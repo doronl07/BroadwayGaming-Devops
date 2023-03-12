@@ -35,31 +35,33 @@ machines can be set up in any cloud, hyper-v, vagrant or any other platform that
 Tip:
 -	Use only ansible and ansible modules. 😊
 ## Scripting
--	Top is the most important process on our system, and it must be running the whole time, unless we are under maintenance.
--	When we want to start a maintenance, we need to create a file under /tmp/maintenance.txt
+-	Notepad is the most important process on our system, and it must be running the whole time, unless we are under maintenance.
+-	When we want to start a maintenance, we need to create a file under c:\tmp\maintenance.txt.
 -	When maintenance is done, file can be removed.
+-	Starting and stopping maintenance is done manually by the sysadmin.
 
 First Part
 
-- Please write a script to monitor the Top process. 
-- The script will create a CSV file with 2 headers, "Date" & "Message"
-- Checks if the process for Top is running 
-  - Process is running - Write the current hour, minute & second into the csv file.
-     and the message "Top is running"
-  - Process is not running - Start the Top process (only if we are not under maintenance mode), write the current hour, minute & second into the csv file and the message "Top was started".
+- Please write a script to monitor the notepad process.
+- The script will create a CSV file with 2 headers, "Date" & "Message".
+- Checks if the process for notepad is running.
+  - Process is running - Write the time into the csv file,
+     and the message "Notepad is running".
+  - Process is not running - 
+    - In case we are not under maintenance, start the notepad process and write the time into the csv file and the message "Notepad was started". 
+    - In case we are under maintenance, write the time into the csv file and the message "We are under maintenance mode!"
 
-- Checks if a file maintenance exists.
-  - Fie Exists - write the current hour, minute & second into the csv file.
-  - Write "We are under maintenance mode!" in the message.
+- To check if we are under maintenance - you'll need to checks if a file maintenance exists.
+- Message time format should be DD-MM-YYYY HH:MM
 
 - The script should run for 5 minutes and it should sample the process every 5 seconds.
 
 Second Part:
 -	Extract from the csv only the lines which have "We are under maintenance mode!" in them.
--	Count & output the amount of lines extracted
+-	Count & output the amount of lines extracted.
 
 Bonus:
--	Extract from the CSV all the lines where Top wasn't running and had to be opened.
+-	Extract from the CSV all the lines where notepad wasn't running and had to be opened.
 -	Show via some GUI all the relevant lines from the CSV.
 -	Give the user an option to choose some lines and save them into a separate file.
 
